@@ -27,11 +27,12 @@ app = FastAPI(
 
 app.add_middleware(
     CORSMiddleware,
+    # Hardcoded origins to avoid env parsing issues with FRONTEND_URLS
     allow_origins=[
-                *settings.frontend_urls,
-                "https://bina-demo-git-main-adre-institute.vercel.app",
-                "http://localhost:3000",
-                "https://bina-demo-chi.vercel.app"],
+        "https://bina-demo-git-main-adre-institute.vercel.app",
+        "https://bina-demo-chi.vercel.app",
+        "http://localhost:3000",
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
