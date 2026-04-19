@@ -22,7 +22,7 @@ class Settings(BaseSettings):
     groq_api_key: str
 
     # CORS
-    frontend_url: str = "http://localhost:5173"
+    frontend_urls: list[str] = ["http://localhost:3000"]
 
     # File upload limits
     max_upload_size_mb: int = 10
