@@ -1,0 +1,159 @@
+/* ============================================================
+   BINA — Design Tokens (tokens.css)
+   Source: Bina PRD v1.0, Section 5 — Winter Chill palette
+   Place this file at: frontend/src/styles/tokens.css
+   ============================================================ */
+
+/* Fonts are loaded from index.html; keep this import as a fallback for tools that read CSS directly */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;700;900&display=swap');
+
+/* ── Color Palette ─────────────────────────────────────────── */
+:root {
+  /* Core palette (Bina design language) */
+  --color-primary-dark-bg:  #0f2318; /* primary dark background */
+  --color-surface:          #F5F9F6; /* surface background */
+  --color-white:            #ffffff;
+  --color-primary:          #52A06E; /* primary green (buttons, accents) */
+  --color-amber:            #F4A535; /* amber accent (badges/highlights) */
+  --color-blue:             #3A8FB7; /* blue accent (secondary actions) */
+  --color-body-text:        #1a2e22; /* body text */
+  --color-muted-1:          #5A7A6A;
+  --color-muted-2:          #7A9A84;
+  --color-border-1:         #D4E8DA;
+  --color-border-2:         #E8F0EB;
+  --color-error:            #C0392B;
+
+  /* Derived utility tokens */
+  --color-border:           var(--color-border-1);
+  --color-border-weak:      var(--color-border-2);
+
+  /* ── Typography ──────────────────────────────────────────── */
+  --font-display:           'Playfair Display', serif;
+  --font-body:              'DM Sans', sans-serif;
+  --font-mono:              'Inter Mono', monospace;
+
+  --text-display:           2rem;       /* 32px */
+  --text-section:           1.375rem;   /* 22px */
+  --text-body:              0.9375rem;  /* 15px */
+  --text-label:             0.75rem;    /* 12px */
+  --text-mono:              0.8125rem;  /* 13px */
+
+  --weight-display:         700;
+  --weight-section:         700;
+  --weight-body:            400;
+  --weight-label:           600;
+
+  /* ── Spacing (8px base grid) ─────────────────────────────── */
+  --space-1:   0.5rem;   /* 8px */
+  --space-2:   1rem;     /* 16px */
+  --space-3:   1.5rem;   /* 24px */
+  --space-4:   2rem;     /* 32px */
+  --space-5:   2.5rem;   /* 40px */
+  --space-6:   3rem;     /* 48px */
+  --space-8:   4rem;     /* 64px */
+
+  /* ── Radii ───────────────────────────────────────────────── */
+  /* Radii per design: cards 16px, pills 100px, buttons 10px */
+  --radius-card:    16px;
+  --radius-pill:    100px;
+  --radius-btn:     10px;
+  --radius-input:   10px;
+
+  /* ── Shadows ─────────────────────────────────────────────── */
+  /* No generic shadows per design; use border + translateY lift on hover */
+  --shadow-card:    none;
+  --shadow-modal:   none;
+  --shadow-btn:     none;
+
+  /* ── Transitions ─────────────────────────────────────────── */
+  --transition-hover:  180ms cubic-bezier(.2,.9,.2,1);
+  --transition-modal:  220ms cubic-bezier(.2,.9,.2,1);
+
+  /* ── Component Sizes ─────────────────────────────────────── */
+  --btn-height-primary:    40px;
+  --btn-height-secondary:  36px;
+  --input-height:          40px;
+  --nav-height:            60px;
+  --min-tap-target:        44px;
+
+  /* ── Focus Ring ──────────────────────────────────────────── */
+  --focus-ring: 0 0 0 3px rgba(82,160,110,0.18);
+
+  /* Hover lift transform for cards */
+  --card-hover-transform: translateY(-3px);
+}
+
+/* ── Base Reset & Global Styles ──────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  font-weight: var(--weight-body);
+  color: var(--color-body-text);
+  background-color: var(--color-primary-dark-bg);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* ── Typography Scale ────────────────────────────────────────── */
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  color: var(--color-body-text);
+  line-height: 1.15;
+}
+
+h1 {
+  font-size: var(--text-display);
+  font-weight: var(--weight-display);
+  letter-spacing: -0.5px;
+}
+
+h2 {
+  font-size: var(--text-section);
+  font-weight: var(--weight-section);
+}
+
+h3 {
+  font-size: 1.125rem;
+  font-weight: var(--weight-section);
+}
+
+p {
+  color: var(--color-body-text);
+  line-height: 1.7;
+}
+
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color var(--transition-hover);
+}
+
+a:hover {
+  color: var(--color-primary-hover);
+}
+
+/* ── Focus Accessibility ─────────────────────────────────────── */
+:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+/* ── Scrollbar (subtle) ──────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--color-bg); }
+::-webkit-scrollbar-thumb {
+  background: var(--color-mid);
+  border-radius: 3px;
+}

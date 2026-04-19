@@ -1,0 +1,46 @@
+# Bina — Cursor Rules
+
+## Project
+Virtual science lab platform for Kenyan secondary school students.
+Stack: React 18 + Vite (frontend) | FastAPI + SQLAlchemy (backend) | Supabase | Gemini Flash | Groq Llama 3.3
+
+## Code style
+
+### Python (backend)
+- Python 3.11+, type hints on all functions
+- async/await throughout — no sync DB calls
+- Pydantic models for all request/response bodies
+- SQLAlchemy async sessions only — use get_db() dependency
+- All transactions explicit: wrap multi-table writes in one session, rollback on exception
+- Never hardcode secrets — always use settings from config.py
+- Logging: use Python logging module, never print()
+
+### JavaScript/React (frontend)
+- React 18 functional components only — no class components
+- Hooks: useState, useEffect, useCallback, useRef
+- No direct API calls in components — use services/api.js
+- Tailwind utility classes only — no inline style objects except in generated experiment components
+- All interactive elements: minimum 44px touch target
+- Focus rings on all interactive elements (focus-visible)
+
+## Architecture rules
+- NEVER store API keys in frontend code or git
+- Generated JSX runs in sandboxed iframe only — never eval() in main window
+- All DB writes that touch multiple tables go in one transaction
+- Cache check before EVERY generation call — document_hash is the key
+- Agent files live in backend/agents/ — one file per agent
+- Keep components small: if > 150 lines, split it
+
+## Naming
+- Components: PascalCase
+- Hooks: camelCase starting with 'use'
+- API service functions: camelCase
+- DB models: PascalCase
+- Routes: kebab-case URLs
+
+## What NOT to do
+- No direct Supabase client calls from frontend pages — go through api.js
+- No synchronous SQLAlchemy
+- No console.log in committed code
+- No purple gradients on white backgrounds (off-brand)
+- No hardcoded experiment content — everything comes from documents
