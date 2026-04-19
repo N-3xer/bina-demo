@@ -111,7 +111,8 @@ async def upload_document(
             file=html_code.encode("utf-8"),
             file_options={"content-type": "text/html"},
         )
-        component_url = f'http://localhost:8000/api/experiments/component/{doc_hash}.html'
+        #component_url = f'http://localhost:8000/api/experiments/component/{doc_hash}.html'
+        component_url = f'https://bina-demo-production.up.railway.app/api/experiments/component/{doc_hash}.html'
     except Exception as e:
         raise HTTPException(500, f"Storage upload failed: {e}")
 
