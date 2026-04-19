@@ -1,4 +1,6 @@
 from pydantic_settings import BaseSettings, SettingsConfigDict
+from pydantic import field_validator
+from typing import List
 
 
 class Settings(BaseSettings):
@@ -22,7 +24,16 @@ class Settings(BaseSettings):
     groq_api_key: str
 
     # CORS
+    # Accept a JSON list in env or a comma-separated string (common in env files)
     frontend_urls: list[str] = ["http://localhost:3000"]
+
+    @field_validator("frontend_urls", mode="before")
+    def _parse_frontend_urls(cls, v):
+        # If the env provides a single comma-separated string, split it.
+        if isinstance(v, str):
+            return [u.strip() for u in v.split(",") if u.strip()]
+        # Otherwise assume it's already a list
+        return v
 
     # File upload limits
     max_upload_size_mb: int = 10
